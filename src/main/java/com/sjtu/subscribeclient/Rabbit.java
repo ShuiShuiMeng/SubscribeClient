@@ -1,14 +1,10 @@
-package com.sjtu.subscribeclient.api;
+package com.sjtu.subscribeclient;
 
 
 import com.rabbitmq.client.ConnectionFactory;
 import com.sjtu.subscribeclient.components.RabbitConnection;
 import com.sjtu.subscribeclient.components.RabbitConsumer;
 import com.sjtu.subscribeclient.components.RabbitSender;
-import com.sjtu.subscribeclient.entity.User;
-
-import java.io.IOException;
-import java.util.concurrent.TimeoutException;
 
 public class Rabbit {
 

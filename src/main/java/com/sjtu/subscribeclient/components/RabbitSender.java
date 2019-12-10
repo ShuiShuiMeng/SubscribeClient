@@ -1,7 +1,7 @@
 package com.sjtu.subscribeclient.components;
 
 import com.sjtu.subscribeclient.common.Constants;
-import com.sjtu.subscribeclient.entity.User;
+import com.sjtu.subscribeclient.User;
 
 import java.io.IOException;
 

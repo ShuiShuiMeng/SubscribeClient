@@ -1,8 +1,5 @@
 package com.sjtu.subscribeclient;
 
-import com.sjtu.subscribeclient.api.Rabbit;
-import com.sjtu.subscribeclient.entity.User;
-
 public class SubscribeClient {
 
     public static void main(String[] args) {
@@ -17,8 +14,8 @@ public class SubscribeClient {
 
         Rabbit.connect(host, port, username, password);
 
-        // Rabbit.sendMsg("1234");
-        // Rabbit.sendMsg("5678");
+        // Rabbit.sendMsg("1234", user);
+        // Rabbit.sendMsg("5678", user);
         //System.out.println(Rabbit.getOneMsg(user));
 
         Rabbit.close();
