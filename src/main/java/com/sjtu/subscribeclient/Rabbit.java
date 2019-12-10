@@ -30,8 +30,12 @@ public class Rabbit {
         }
     }
 
-    public static void close() throws IOException, TimeoutException {
-        RabbitConnection.close();
+    public static void close() {
+        try {
+            RabbitConnection.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     public static void sendMsg(String msg, User user) {
