@@ -6,6 +6,9 @@ import com.sjtu.subscribeclient.components.RabbitConnection;
 import com.sjtu.subscribeclient.components.RabbitConsumer;
 import com.sjtu.subscribeclient.components.RabbitSender;
 
+import java.io.IOException;
+import java.util.concurrent.TimeoutException;
+
 public class Rabbit {
 
     public Rabbit() {
@@ -27,13 +30,8 @@ public class Rabbit {
         }
     }
 
-    public static void close() {
-        try {
-            RabbitConnection rabbitConnection = new RabbitConnection();
-            rabbitConnection.close();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+    public static void close() throws IOException, TimeoutException {
+        RabbitConnection.close();
     }
 
     public static void sendMsg(String msg, User user) {

@@ -7,7 +7,6 @@ import com.rabbitmq.client.ConnectionFactory;
 import java.io.IOException;
 import java.util.concurrent.TimeoutException;
 
-
 public class RabbitConnection {
     static Channel channel;
     private static Connection connection;
@@ -27,7 +26,7 @@ public class RabbitConnection {
         channel = connection.createChannel();
     }
 
-    public void close() throws IOException, TimeoutException {
+    public static void close() throws IOException, TimeoutException {
         channel.close();
         connection.close();
     }
