@@ -3,9 +3,6 @@ package com.sjtu.subscribeclient.components;
 import com.rabbitmq.client.Channel;
 import com.rabbitmq.client.Connection;
 import com.rabbitmq.client.ConnectionFactory;
-import com.rabbitmq.client.DeliverCallback;
-import com.sjtu.subscribeclient.api.Rabbit;
-import com.sjtu.subscribeclient.entity.User;
 
 import java.io.IOException;
 import java.util.concurrent.TimeoutException;
@@ -28,6 +25,11 @@ public class RabbitConnection {
     public void setConnection(ConnectionFactory connectionFactory) throws IOException, TimeoutException {
         connection = connectionFactory.newConnection();
         channel = connection.createChannel();
+    }
+
+    public void close() throws IOException, TimeoutException {
+        channel.close();
+        connection.close();
     }
 
 }

@@ -1,7 +1,6 @@
 package com.sjtu.subscribeclient;
 
 import com.sjtu.subscribeclient.api.Rabbit;
-import com.sjtu.subscribeclient.components.RabbitConnection;
 import com.sjtu.subscribeclient.entity.User;
 
 public class SubscribeClient {
@@ -13,15 +12,16 @@ public class SubscribeClient {
         String password = "guest";
 
         User user = new User("test0000", "testSJTU", "test user");
-        RabbitConnection rabbitConnection = Rabbit.connect(host, port, username, password);
+
         // System.out.println(rabbitConnection.getConnectMsg());
 
-        try {
-            // Rabbit.sendMsg("1234");
-            // Rabbit.sendMsg("5678");
-            System.out.println(Rabbit.getOneMsg(user));
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        Rabbit.connect(host, port, username, password);
+
+        // Rabbit.sendMsg("1234");
+        // Rabbit.sendMsg("5678");
+        //System.out.println(Rabbit.getOneMsg(user));
+
+        Rabbit.close();
+
     }
 }

@@ -8,6 +8,7 @@ import com.sjtu.subscribeclient.components.RabbitSender;
 import com.sjtu.subscribeclient.entity.User;
 
 import java.io.IOException;
+import java.util.concurrent.TimeoutException;
 
 public class Rabbit {
 
@@ -15,9 +16,8 @@ public class Rabbit {
 
     }
 
-    public static RabbitConnection connect(String host, int port, String username, String password) {
+    public static void connect(String host, int port, String username, String password) {
         try {
-            // System.out.println("connecting....");
             RabbitConnection rabbitConnection = new RabbitConnection();
             ConnectionFactory connectionFactory = new ConnectionFactory();
             connectionFactory.setHost(host);
@@ -26,19 +26,35 @@ public class Rabbit {
             connectionFactory.setPassword(password);
             connectionFactory.setVirtualHost("/");
             rabbitConnection.setConnection(connectionFactory);
-            return rabbitConnection;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static void close() {
+        try {
+            RabbitConnection rabbitConnection = new RabbitConnection();
+            rabbitConnection.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static void sendMsg(String msg, User user) {
+        try {
+            RabbitSender.sendMsg(msg, user);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static String getOneMsg(User user) {
+        try {
+            return RabbitConsumer.getOneMsg(user);
         } catch (Exception e) {
             e.printStackTrace();
             return null;
         }
-    }
-
-    public static void sendMsg(String msg, User user) throws IOException {
-        RabbitSender.sendMsg(msg, user);
-    }
-
-    public static String getOneMsg(User user) throws IOException {
-        return RabbitConsumer.getOneMsg(user);
     }
 
 }
