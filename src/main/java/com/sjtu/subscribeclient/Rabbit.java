@@ -38,9 +38,17 @@ public class Rabbit {
         }
     }
 
-    public static void sendMsg(String msg, User user) {
+    public static void sendObjRequest(String msg) {
         try {
-            RabbitSender.sendMsg(msg, user);
+            RabbitSender.sendObjRequest(msg);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static void sendSubRequest(String msg) {
+        try {
+            RabbitSender.sendSubRequest(msg);
         } catch (Exception e) {
             e.printStackTrace();
         }
