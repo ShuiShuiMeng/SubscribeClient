@@ -1,6 +1,6 @@
-package com.sjtu.subscribeclient.request.cud;
+package com.sjtu.subscribeclient.model.request.cud;
 
-import com.sjtu.subscribeclient.request.base.BaseReq;
+import com.sjtu.subscribeclient.model.request.base.BaseReq;
 
 public class UpdateReq extends BaseReq {
     private boolean response;
@@ -12,7 +12,7 @@ public class UpdateReq extends BaseReq {
     }
 
     public UpdateReq(String userId, String id, boolean response, String name, String value) {
-        this.op = "ADD_ATTR";
+        this.op = "UPDATE";
         this.userId = userId;
         this.id = id;
         this.response = response;

@@ -1,4 +1,4 @@
-package com.sjtu.subscribeclient.request.base;
+package com.sjtu.subscribeclient.model.request.base;
 
 public class BaseReq {
     protected String op;

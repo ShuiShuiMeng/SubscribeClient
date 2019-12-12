@@ -1,13 +1,15 @@
 package com.sjtu.subscribeclient;
 
+import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
-import com.sjtu.subscribeclient.request.cud.CreateReq;
-import com.sjtu.subscribeclient.request.find.FindTimeReq;
+import com.sjtu.subscribeclient.model.request.find.*;
+import com.sjtu.subscribeclient.model.response.find.FindIdRes;
+import com.sjtu.subscribeclient.model.user.User;
+import com.sjtu.subscribeclient.model.request.find.FindTimesReq;
+import com.sjtu.subscribeclient.utils.Utils;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.HashMap;
+import java.util.*;
 import java.util.concurrent.TimeoutException;
 
 public class SubscribeClient {
@@ -34,19 +36,27 @@ public class SubscribeClient {
         */
 
         // FIND_ID
-        // String msg = JSONObject.toJSONString(new FindIdReq(user.getId(), "2"));
+        String msg = JSONObject.toJSONString(new FindIdReq(user.getId(), "2"));
 
         // FIND_TIME
-        String msg = JSONObject.toJSONString(new FindTimeReq(user.getId(), "2", new Date()));
+        // String msg = JSONObject.toJSONString(new FindTimeReq(user.getId(), "2", new Date()));
+
+        // FIND_TIMES
+        // String msg = JSON.toJSONString(new FindTimesReq(user.getId(), "2", new Date(2019-1900, Calendar.DECEMBER, 11), new Date()));
+
+        // ADD_ATTR
+        // String msg = JSONObject.toJSONString(new UpdateReq(user.getId(), "2", true, "male", "male"));
 
         // CREATE
-        HashMap<String, String> map = new HashMap<String, String>();
+        // HashMap<String, String> map = new HashMap<String, String>();
         // map.put("male", "男");
         // map.put("female", "女");
         // String msg = JSONObject.toJSONString(new CreateReq(user.getId(), false,"5", "name", "epcc", "1", new ArrayList<String>(), map));
 
         Rabbit.sendObjRequest(msg);
-        System.out.println(msg);
+        // String msg = "{\"xx\": \"123\" , \"id\": {}}";
+        // System.out.println(JSON.parseObject(msg));
+        // System.out.println(JSON.parseObject(msg).getJSONObject("id"));
         int k = 0;
         while (true) {
             // System.out.println(k);
@@ -54,7 +64,8 @@ public class SubscribeClient {
             Thread.sleep(1000);
             String res = Rabbit.getOneMsg(user);
             if (res != null) {
-                System.out.println(res);
+                // System.out.println(res);
+                System.out.println(Utils.parseFindIdRes(res).getObject().toString());
                 break;
             }
         }

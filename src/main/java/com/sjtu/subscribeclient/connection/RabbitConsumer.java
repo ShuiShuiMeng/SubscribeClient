@@ -1,7 +1,7 @@
-package com.sjtu.subscribeclient.components;
+package com.sjtu.subscribeclient.connection;
 
 import com.rabbitmq.client.GetResponse;
-import com.sjtu.subscribeclient.User;
+import com.sjtu.subscribeclient.model.user.User;
 
 import java.io.IOException;
 

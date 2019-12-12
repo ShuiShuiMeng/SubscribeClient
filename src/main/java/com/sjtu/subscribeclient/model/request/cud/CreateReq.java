@@ -1,6 +1,6 @@
-package com.sjtu.subscribeclient.request.cud;
+package com.sjtu.subscribeclient.model.request.cud;
 
-import com.sjtu.subscribeclient.request.base.BaseReq;
+import com.sjtu.subscribeclient.model.request.base.BaseReq;
 
 import java.util.HashMap;
 import java.util.List;

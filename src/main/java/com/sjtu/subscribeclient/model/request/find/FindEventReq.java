@@ -1,6 +1,6 @@
-package com.sjtu.subscribeclient.request.find;
+package com.sjtu.subscribeclient.model.request.find;
 
-import com.sjtu.subscribeclient.request.base.BaseReq;
+import com.sjtu.subscribeclient.model.request.base.BaseReq;
 
 public class FindEventReq extends BaseReq {
     private String nodeId;

@@ -2,12 +2,10 @@ package com.sjtu.subscribeclient;
 
 
 import com.rabbitmq.client.ConnectionFactory;
-import com.sjtu.subscribeclient.components.RabbitConnection;
-import com.sjtu.subscribeclient.components.RabbitConsumer;
-import com.sjtu.subscribeclient.components.RabbitSender;
-
-import java.io.IOException;
-import java.util.concurrent.TimeoutException;
+import com.sjtu.subscribeclient.connection.RabbitConnection;
+import com.sjtu.subscribeclient.connection.RabbitConsumer;
+import com.sjtu.subscribeclient.connection.RabbitSender;
+import com.sjtu.subscribeclient.model.user.User;
 
 public class Rabbit {
 

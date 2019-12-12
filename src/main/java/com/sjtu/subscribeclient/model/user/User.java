@@ -1,4 +1,4 @@
-package com.sjtu.subscribeclient;
+package com.sjtu.subscribeclient.model.user;
 
 public class User {
     private String id;

@@ -1,4 +1,4 @@
-package com.sjtu.subscribeclient.components;
+package com.sjtu.subscribeclient.connection;
 
 import com.rabbitmq.client.Channel;
 import com.rabbitmq.client.Connection;
