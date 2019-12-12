@@ -5,11 +5,12 @@ import com.sjtu.subscribeclient.model.request.base.BaseReq;
 public class DeleteReq extends BaseReq {
     private boolean response;
 
+    // response 默认打开
     public DeleteReq(String userId, String id) {
-        new DeleteReq(userId, id, true);
+        new DeleteReq(userId, true, id);
     }
 
-    public DeleteReq(String userId, String id, boolean response) {
+    public DeleteReq(String userId, boolean response, String id) {
         this.op = "DELETE";
         this.userId = userId;
         this.id = id;

@@ -13,6 +13,11 @@ public class CreateReq extends BaseReq {
     private List<String> events;
     private HashMap<String, String> attrs;
 
+    // response 默认打开
+    public CreateReq(String userId, String id, String name, String intro, String template, List<String> events, HashMap<String, String> attrs) {
+        new CreateReq(userId, true, id, name, intro, template, events, attrs);
+    }
+
     public CreateReq(String userId, boolean response, String id, String name, String intro, String template, List<String> events, HashMap<String, String> attrs) {
         this.op = "CREATE";
         this.userId = userId;

@@ -19,4 +19,9 @@ public class CreateRes extends BaseRes {
     public void setMessage(String message) {
         this.message = message;
     }
+
+    @Override
+    public String toString() {
+        return "{\"op\":" + op + ",\"status\":" + status + ",\"message\":" + message + "}";
+    }
 }

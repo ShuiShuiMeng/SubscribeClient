@@ -8,10 +8,10 @@ public class UpdateReq extends BaseReq {
     private String value;
 
     public UpdateReq(String userId, String id, String name, String value) {
-        new UpdateReq(userId, id, true, name, value);
+        new UpdateReq(userId, true, id, name, value);
     }
 
-    public UpdateReq(String userId, String id, boolean response, String name, String value) {
+    public UpdateReq(String userId, boolean response, String id, String name, String value) {
         this.op = "UPDATE";
         this.userId = userId;
         this.id = id;

@@ -9,5 +9,4 @@ public class FindIdReq extends BaseReq {
         this.userId = userId;
         this.id = id;
     }
-
 }

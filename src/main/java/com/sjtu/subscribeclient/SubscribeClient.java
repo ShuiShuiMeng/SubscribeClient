@@ -2,6 +2,8 @@ package com.sjtu.subscribeclient;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
+import com.sjtu.subscribeclient.model.request.cud.CreateReq;
+import com.sjtu.subscribeclient.model.request.cud.DeleteReq;
 import com.sjtu.subscribeclient.model.request.find.*;
 import com.sjtu.subscribeclient.model.response.find.FindIdRes;
 import com.sjtu.subscribeclient.model.user.User;
@@ -36,7 +38,7 @@ public class SubscribeClient {
         */
 
         // FIND_ID
-        String msg = JSONObject.toJSONString(new FindIdReq(user.getId(), "2"));
+        // String msg = JSONObject.toJSONString(new FindIdReq(user.getId(), "2"));
 
         // FIND_TIME
         // String msg = JSONObject.toJSONString(new FindTimeReq(user.getId(), "2", new Date()));
@@ -51,7 +53,10 @@ public class SubscribeClient {
         // HashMap<String, String> map = new HashMap<String, String>();
         // map.put("male", "男");
         // map.put("female", "女");
-        // String msg = JSONObject.toJSONString(new CreateReq(user.getId(), false,"5", "name", "epcc", "1", new ArrayList<String>(), map));
+        // String msg = JSONObject.toJSONString(new CreateReq(user.getId(), true,"6", "name", "epcc", "1", new ArrayList<String>(), map));
+
+        // DELETE
+        String msg = JSONObject.toJSONString(new DeleteReq(user.getId(), true, "6"));
 
         Rabbit.sendObjRequest(msg);
         // String msg = "{\"xx\": \"123\" , \"id\": {}}";
@@ -64,8 +69,8 @@ public class SubscribeClient {
             Thread.sleep(1000);
             String res = Rabbit.getOneMsg(user);
             if (res != null) {
-                // System.out.println(res);
-                System.out.println(Utils.parseFindIdRes(res).getObject().toString());
+                System.out.println(res);
+                System.out.println(Utils.parseCreateRes(res).toString());
                 break;
             }
         }

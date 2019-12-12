@@ -21,4 +21,9 @@ public class FindEventRes extends BaseRes {
     public void setObjects(List<ObjectRes> objects) {
         this.objects = objects;
     }
+
+    @Override
+    public String toString() {
+        return "{\"op\":" + op + ",\"status\":" + status + ",\"objects\":" + objects.toString() + "}";
+    }
 }

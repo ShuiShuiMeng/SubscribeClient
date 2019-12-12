@@ -19,4 +19,9 @@ public class FindIdRes extends BaseRes {
     public void setObject(ObjectRes object) {
         this.object = object;
     }
+
+    @Override
+    public String toString() {
+        return "{\"op\":" + op + ",\"status\":" + status + ",\"object\":" + object.toString() + "}";
+    }
 }
