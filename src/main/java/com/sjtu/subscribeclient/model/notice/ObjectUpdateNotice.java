@@ -1,16 +1,14 @@
-package com.sjtu.subscribeclient.model.response.subscribe.ObjectSubRes;
-
-import com.sjtu.subscribeclient.model.response.subscribe.BaseSubRes;
+package com.sjtu.subscribeclient.model.notice;
 
 import java.util.Date;
 
-public class UpdateSubRes extends BaseSubRes {
+public class ObjectUpdateNotice extends BaseNoticeRes {
     private String id;
     private String name;
     private String value;
     private Date updateTime;
 
-    public UpdateSubRes(String message, String id, String name, String value, Date updateTime) {
+    public ObjectUpdateNotice(String message, String id, String name, String value, Date updateTime) {
         this.message = message;
         this.id = id;
         this.name = name;

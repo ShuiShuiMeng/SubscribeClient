@@ -3,12 +3,20 @@ package com.sjtu.subscribeclient.model.response.find;
 import com.sjtu.subscribeclient.model.object.ObjectRes;
 import com.sjtu.subscribeclient.model.response.base.BaseRes;
 
-public class FindTimeRes extends BaseRes {
-    private ObjectRes object;
+import java.util.Date;
 
-    public FindTimeRes(String status, ObjectRes object) {
+public class FindTimeRes extends BaseRes {
+
+    private ObjectRes object;
+    private String id;
+    private Date date;
+
+    public FindTimeRes(String status, String message, String id, Date date, ObjectRes object) {
         this.op = "FIND_TIME";
         this.status = status;
+        this.message = message;
+        this.id = id;
+        this.date = date;
         this.object = object;
     }
 
@@ -18,6 +26,22 @@ public class FindTimeRes extends BaseRes {
 
     public void setObject(ObjectRes object) {
         this.object = object;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public Date getDate() {
+        return date;
+    }
+
+    public void setDate(Date date) {
+        this.date = date;
     }
 
     @Override

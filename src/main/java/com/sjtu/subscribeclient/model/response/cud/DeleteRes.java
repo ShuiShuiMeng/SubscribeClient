@@ -4,12 +4,13 @@ import com.sjtu.subscribeclient.model.response.base.BaseRes;
 
 public class DeleteRes extends BaseRes {
 
-    private String message;
+    private String id;
 
-    public DeleteRes(String status, String message) {
+    public DeleteRes(String status, String message, String id) {
         this.op = "DELETE";
         this.status = status;
         this.message = message;
+        this.id = id;
     }
 
     public String getMessage() {
@@ -18,6 +19,15 @@ public class DeleteRes extends BaseRes {
 
     public void setMessage(String message) {
         this.message = message;
+    }
+
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 
     @Override

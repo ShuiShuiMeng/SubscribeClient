@@ -1,11 +1,9 @@
-package com.sjtu.subscribeclient.model.response.subscribe.ObjectSubRes;
+package com.sjtu.subscribeclient.model.notice;
 
-import com.sjtu.subscribeclient.model.response.subscribe.BaseSubRes;
-
-public class DeleteSubRes extends BaseSubRes {
+public class ObjectDeleteNotice extends BaseNoticeRes {
     private String id;
 
-    public DeleteSubRes(String message, String id) {
+    public ObjectDeleteNotice(String message, String id) {
         this.op = "SUB_RES_OBJ_DELETE";
         this.message = message;
         this.id = id;

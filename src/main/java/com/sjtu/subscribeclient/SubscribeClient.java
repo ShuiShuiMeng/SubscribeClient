@@ -1,15 +1,9 @@
 package com.sjtu.subscribeclient;
 
 import com.alibaba.fastjson.JSON;
-import com.alibaba.fastjson.JSONObject;
-import com.sjtu.subscribeclient.model.request.cud.CreateReq;
-import com.sjtu.subscribeclient.model.request.cud.DeleteReq;
-import com.sjtu.subscribeclient.model.request.cud.UpdateReq;
-import com.sjtu.subscribeclient.model.request.find.*;
-import com.sjtu.subscribeclient.model.response.find.FindIdRes;
 import com.sjtu.subscribeclient.model.user.User;
 import com.sjtu.subscribeclient.model.request.find.FindTimesReq;
-import com.sjtu.subscribeclient.utils.Utils;
+import com.sjtu.subscribeclient.utils.parse;
 
 import java.io.IOException;
 import java.util.*;
@@ -71,7 +65,7 @@ public class SubscribeClient {
             String res = Rabbit.getOneMsg(user);
             if (res != null) {
                 System.out.println(res);
-                System.out.println(Utils.parseFindTimesRes(res).toString());
+                System.out.println(parse.parseFindTimesRes(res).toString());
                 break;
             }
         }

@@ -18,14 +18,16 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 
-public class Utils {
+public class parse {
     public static CreateRes parseCreateRes(String msg) {
         JSONObject jsonObject = JSON.parseObject(msg);
         // res.status
         String status = jsonObject.getString("status");
         // res.message
         String message = jsonObject.getString("message");
-        return new CreateRes(status, message);
+        // res.id
+        String id = jsonObject.getString("id");
+        return new CreateRes(status, message, id);
     }
 
     public static DeleteRes parseDeleteRes(String msg) {
@@ -34,7 +36,9 @@ public class Utils {
         String status = jsonObject.getString("status");
         // res.message
         String message = jsonObject.getString("message");
-        return new DeleteRes(status, message);
+        // res.id
+        String id = jsonObject.getString("id");
+        return new DeleteRes(status, message, id);
     }
 
     public static UpdateRes parseUpdateRes(String msg) {
@@ -43,29 +47,51 @@ public class Utils {
         String status = jsonObject.getString("status");
         // res.message
         String message = jsonObject.getString("message");
-        return new UpdateRes(status, message);
+        // res.id
+        String id = jsonObject.getString("id");
+        // res.name
+        String name = jsonObject.getString("name");
+        return new UpdateRes(status, message, id, name);
     }
 
     public static FindIdRes parseFindIdRes(String msg) {
         JSONObject jsonObject = JSON.parseObject(msg);
         // res.status
         String status = jsonObject.getString("status");
+        // res.message
+        String message = jsonObject.getString("message");
+        // res.id
+        String id = jsonObject.getString("id");
         // res.object
-        return new FindIdRes(status, parseToObject(jsonObject));
+        return new FindIdRes(status, message, id, parseToObject(jsonObject));
     }
 
     public static FindTimeRes parseFindTimeRes(String msg) {
         JSONObject jsonObject = JSON.parseObject(msg);
         // res.status
         String status = jsonObject.getString("status");
+        // res.message
+        String message = jsonObject.getString("message");
+        // res.id
+        String id = jsonObject.getString("id");
+        // res.date
+        Date date = jsonObject.getDate("date");
         // res.object
-        return new FindTimeRes(status, parseToObject(jsonObject));
+        return new FindTimeRes(status, message, id, date, parseToObject(jsonObject));
     }
 
     public static FindTimesRes parseFindTimesRes(String msg) {
         JSONObject jsonObject = JSON.parseObject(msg);
         // res.status
         String status = jsonObject.getString("status");
+        // res.message
+        String message = jsonObject.getString("message");
+        // res.id
+        String id = jsonObject.getString("id");
+        // res.start
+        Date start = jsonObject.getDate("start");
+        // res.end
+        Date end = jsonObject.getDate("end");
         // res.objects
         JSONArray objectsArray = jsonObject.getJSONArray("objects");
         List<ObjectRes> objects = new ArrayList<ObjectRes>();
@@ -73,13 +99,19 @@ public class Utils {
         for (int i=0; i<length; ++i) {
             objects.add(parseToObject(objectsArray.getJSONObject(i)));
         }
-        return new FindTimesRes(status, objects);
+        return new FindTimesRes(status, message, id, start, end, objects);
     }
 
     public static FindEventRes parseFindEventRes(String msg) {
         JSONObject jsonObject = JSON.parseObject(msg);
         // res.status
         String status = jsonObject.getString("status");
+        // res.message
+        String message = jsonObject.getString("message");
+        // res.nodeId
+        String nodeId = jsonObject.getString("nodeId");
+        // res.eventId
+        String eventId = jsonObject.getString("eventId");
         // res.objects
         JSONArray objectsArray = jsonObject.getJSONArray("objects");
         List<ObjectRes> objects = new ArrayList<ObjectRes>();
@@ -87,7 +119,7 @@ public class Utils {
         for (int i=0; i<length; ++i) {
             objects.add(parseToObject(objectsArray.getJSONObject(i)));
         }
-        return new FindEventRes(status, objects);
+        return new FindEventRes(status, message, nodeId, eventId, objects);
     }
 
     private static ObjectRes parseToObject(JSONObject jsonObject) {

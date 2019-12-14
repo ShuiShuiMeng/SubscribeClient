@@ -3,12 +3,15 @@ package com.sjtu.subscribeclient.model.response.cud;
 import com.sjtu.subscribeclient.model.response.base.BaseRes;
 
 public class UpdateRes extends BaseRes {
-    private String message;
+    private String id;
+    private String name;
 
-    public UpdateRes(String status, String message) {
+    public UpdateRes(String status, String message, String id, String name) {
         this.op = "UPDATE";
         this.status = status;
         this.message = message;
+        this.id = id;
+        this.name = name;
     }
 
     public String getMessage() {
@@ -17,6 +20,22 @@ public class UpdateRes extends BaseRes {
 
     public void setMessage(String message) {
         this.message = message;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     @Override

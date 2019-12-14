@@ -6,7 +6,6 @@ import com.sjtu.subscribeclient.model.request.base.BaseReq;
 import java.util.List;
 
 public class SubObjectReq extends BaseReq {
-    private String type;
     private List<String> name;
     private boolean latest;
 
@@ -14,17 +13,8 @@ public class SubObjectReq extends BaseReq {
         this.op = "SUB";
         this.userId = userId;
         this.id = id;
-        this.type = Constants.ENTITY_TYPE;
         this.name = name;
         this.latest = latest;
-    }
-
-    public String getType() {
-        return type;
-    }
-
-    public void setType(String type) {
-        this.type = type;
     }
 
     public List<String> getName() {

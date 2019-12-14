@@ -1,6 +1,6 @@
-package com.sjtu.subscribeclient.model.response.subscribe;
+package com.sjtu.subscribeclient.model.notice;
 
-public class BaseSubRes {
+public class BaseNoticeRes {
     protected String op;
     protected String message;
 

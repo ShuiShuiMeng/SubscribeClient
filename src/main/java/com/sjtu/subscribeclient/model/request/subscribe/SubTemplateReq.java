@@ -5,25 +5,16 @@ import com.sjtu.subscribeclient.model.request.base.BaseReq;
 import java.util.List;
 
 public class SubTemplateReq extends BaseReq {
-    private String type;
+
     private List<String> name;
     private List<String> events;
 
-    public SubTemplateReq(String userId, String id, String type, List<String> name, List<String> events) {
+    public SubTemplateReq(String userId, String id, List<String> name, List<String> events) {
         this.op = "SUB";
         this.userId = userId;
         this.id = id;
-        this.type = type;
         this.name = name;
         this.events = events;
-    }
-
-    public String getType() {
-        return type;
-    }
-
-    public void setType(String type) {
-        this.type = type;
     }
 
     public List<String> getName() {
