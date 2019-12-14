@@ -4,6 +4,7 @@ import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.sjtu.subscribeclient.model.request.cud.CreateReq;
 import com.sjtu.subscribeclient.model.request.cud.DeleteReq;
+import com.sjtu.subscribeclient.model.request.cud.UpdateReq;
 import com.sjtu.subscribeclient.model.request.find.*;
 import com.sjtu.subscribeclient.model.response.find.FindIdRes;
 import com.sjtu.subscribeclient.model.user.User;
@@ -44,10 +45,10 @@ public class SubscribeClient {
         // String msg = JSONObject.toJSONString(new FindTimeReq(user.getId(), "2", new Date()));
 
         // FIND_TIMES
-        // String msg = JSON.toJSONString(new FindTimesReq(user.getId(), "2", new Date(2019-1900, Calendar.DECEMBER, 11), new Date()));
+        String msg = JSON.toJSONString(new FindTimesReq(user.getId(), "2", new Date(2019-1900, Calendar.DECEMBER, 11), new Date()));
 
-        // ADD_ATTR
-        // String msg = JSONObject.toJSONString(new UpdateReq(user.getId(), "2", true, "male", "male"));
+        // Update
+        // String msg = JSONObject.toJSONString(new UpdateReq(user.getId(), true,"2", "male", "male"));
 
         // CREATE
         // HashMap<String, String> map = new HashMap<String, String>();
@@ -56,11 +57,11 @@ public class SubscribeClient {
         // String msg = JSONObject.toJSONString(new CreateReq(user.getId(), true,"6", "name", "epcc", "1", new ArrayList<String>(), map));
 
         // DELETE
-        String msg = JSONObject.toJSONString(new DeleteReq(user.getId(), true, "6"));
+        // String msg = JSONObject.toJSONString(new DeleteReq(user.getId(), true, "2"));
 
         Rabbit.sendObjRequest(msg);
         // String msg = "{\"xx\": \"123\" , \"id\": {}}";
-        // System.out.println(JSON.parseObject(msg));
+        System.out.println(msg);
         // System.out.println(JSON.parseObject(msg).getJSONObject("id"));
         int k = 0;
         while (true) {
@@ -70,7 +71,7 @@ public class SubscribeClient {
             String res = Rabbit.getOneMsg(user);
             if (res != null) {
                 System.out.println(res);
-                System.out.println(Utils.parseCreateRes(res).toString());
+                System.out.println(Utils.parseFindTimesRes(res).toString());
                 break;
             }
         }
