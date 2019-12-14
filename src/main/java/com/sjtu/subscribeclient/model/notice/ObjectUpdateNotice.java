@@ -2,7 +2,7 @@ package com.sjtu.subscribeclient.model.notice;
 
 import java.util.Date;
 
-public class ObjectUpdateNotice extends BaseNoticeRes {
+public class ObjectUpdateNotice extends BaseNotice {
     private String id;
     private String name;
     private String value;

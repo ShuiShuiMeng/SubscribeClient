@@ -1,6 +1,6 @@
 package com.sjtu.subscribeclient.model.notice;
 
-public class ObjectDeleteNotice extends BaseNoticeRes {
+public class ObjectDeleteNotice extends BaseNotice {
     private String id;
 
     public ObjectDeleteNotice(String message, String id) {

@@ -4,9 +4,20 @@ import com.sjtu.subscribeclient.model.response.base.BaseRes;
 
 public class UnregisterRes extends BaseRes {
 
-    public UnregisterRes(String status, String message) {
+    private String userId;
+
+    public UnregisterRes(String status, String message, String userId) {
         this.op = "UNREGISTER";
         this.message = message;
         this.status = status;
+        this.userId = userId;
+    }
+
+    public String getUserId() {
+        return userId;
+    }
+
+    public void setUserId(String userId) {
+        this.userId = userId;
     }
 }

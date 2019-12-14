@@ -3,7 +3,7 @@ package com.sjtu.subscribeclient;
 import com.alibaba.fastjson.JSON;
 import com.sjtu.subscribeclient.model.user.User;
 import com.sjtu.subscribeclient.model.request.find.FindTimesReq;
-import com.sjtu.subscribeclient.utils.parse;
+import com.sjtu.subscribeclient.utils.parseRes;
 
 import java.io.IOException;
 import java.util.*;
@@ -65,7 +65,7 @@ public class SubscribeClient {
             String res = Rabbit.getOneMsg(user);
             if (res != null) {
                 System.out.println(res);
-                System.out.println(parse.parseFindTimesRes(res).toString());
+                System.out.println(parseRes.parseFindTimesRes(res).toString());
                 break;
             }
         }

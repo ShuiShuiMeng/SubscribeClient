@@ -9,7 +9,7 @@ public class SubTemplateRes extends BaseRes {
     private String template;
     private List<String> events;
 
-    SubTemplateRes(String status, String message, String template, List<String> events) {
+    public SubTemplateRes(String status, String message, String template, List<String> events) {
         this.op = "SUB_TEMPLATE";
         this.status = status;
         this.message = message;

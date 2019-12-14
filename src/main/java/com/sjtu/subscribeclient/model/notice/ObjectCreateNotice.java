@@ -2,12 +2,12 @@ package com.sjtu.subscribeclient.model.notice;
 
 import com.sjtu.subscribeclient.model.object.ObjectRes;
 
-public class TemplateCreateNotice extends BaseNoticeRes {
+public class ObjectCreateNotice extends BaseNotice {
 
     private String type;
     private ObjectRes object;
 
-    public TemplateCreateNotice(String message, String type, ObjectRes object) {
+    public ObjectCreateNotice(String message, String type, ObjectRes object) {
         this.op = "SUB_RES_OBJ_CREATE";
         this.type = type;
         this.message = message;
