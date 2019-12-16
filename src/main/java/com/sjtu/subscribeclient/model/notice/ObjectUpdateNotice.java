@@ -9,6 +9,7 @@ public class ObjectUpdateNotice extends BaseNotice {
     private Date updateTime;
 
     public ObjectUpdateNotice(String message, String id, String name, String value, Date updateTime) {
+        this.op = "OBJECT_UPDATE_NOTICE";
         this.message = message;
         this.id = id;
         this.name = name;

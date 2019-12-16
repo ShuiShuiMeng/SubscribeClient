@@ -4,7 +4,7 @@ public class ObjectDeleteNotice extends BaseNotice {
     private String id;
 
     public ObjectDeleteNotice(String message, String id) {
-        this.op = "SUB_RES_OBJ_DELETE";
+        this.op = "OBJECT_DELETE_NOTICE";
         this.message = message;
         this.id = id;
     }
