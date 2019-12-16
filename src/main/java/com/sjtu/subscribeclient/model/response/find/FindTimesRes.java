@@ -57,6 +57,6 @@ public class FindTimesRes extends BaseRes {
 
     @Override
     public String toString() {
-        return "{\"op\":" + op + ",\"status\":" + status + ",\"objects\":" + objects.toString() + "}";
+        return "{\"op\":" + op + ",\"status\":" + status + ",\"id\":" + id + ",\"start\":" + start + ",\"end\":"+ end + ",\"objects\":" + objects.toString() + "}";
     }
 }

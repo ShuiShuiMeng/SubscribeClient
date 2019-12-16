@@ -1,31 +1,22 @@
 package com.sjtu.subscribeclient.model.request.subscribe;
 
+import com.sjtu.subscribeclient.model.request.base.BaseReq;
 import com.sjtu.subscribeclient.model.response.base.BaseRes;
 
 import java.util.List;
 import java.util.Map;
 
-public class SubAttributeReq extends BaseRes {
+public class SubAttributeReq extends BaseReq {
 
-    private String id;
     private List<String> names;
     private boolean latest;
 
-    public SubAttributeReq(String status, String message, String id, List<String> names, boolean latest) {
+    public SubAttributeReq(String userId, String id, List<String> names, Boolean latest) {
         this.op = "SUB_ATTR";
-        this.status = status;
-        this.message = message;
+        this.userId = userId;
         this.id = id;
         this.names = names;
         this.latest = latest;
-    }
-
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
     }
 
     public List<String> getNames() {

@@ -5,16 +5,13 @@ import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.sjtu.subscribeclient.model.object.AttributeRes;
 import com.sjtu.subscribeclient.model.object.ObjectRes;
-import com.sjtu.subscribeclient.model.request.subscribe.SubObjectReq;
 import com.sjtu.subscribeclient.model.response.cud.CreateRes;
 import com.sjtu.subscribeclient.model.response.cud.DeleteRes;
 import com.sjtu.subscribeclient.model.response.cud.UpdateRes;
-import com.sjtu.subscribeclient.model.response.find.FindEventRes;
+import com.sjtu.subscribeclient.model.response.find.FindNodeEventRes;
 import com.sjtu.subscribeclient.model.response.find.FindIdRes;
 import com.sjtu.subscribeclient.model.response.find.FindTimeRes;
 import com.sjtu.subscribeclient.model.response.find.FindTimesRes;
-import com.sjtu.subscribeclient.model.response.register.RegisterRes;
-import com.sjtu.subscribeclient.model.response.register.UnregisterRes;
 import com.sjtu.subscribeclient.model.response.subscribe.SubAttributeRes;
 import com.sjtu.subscribeclient.model.response.subscribe.SubObjectRes;
 import com.sjtu.subscribeclient.model.response.subscribe.SubTemplateRes;
@@ -90,7 +87,8 @@ public class parseRes {
         // res.id
         String id = jsonObject.getString("id");
         // res.object
-        return new FindIdRes(status, message, id, parseToObject(jsonObject));
+        JSONObject object = jsonObject.getJSONObject("object");
+        return new FindIdRes(status, message, id, parseToObject(object));
     }
 
     /**
@@ -110,7 +108,8 @@ public class parseRes {
         // res.date
         Date date = jsonObject.getDate("date");
         // res.object
-        return new FindTimeRes(status, message, id, date, parseToObject(jsonObject));
+        JSONObject object = jsonObject.getJSONObject("object");
+        return new FindTimeRes(status, message, id, date, parseToObject(object));
     }
 
     /**
@@ -135,7 +134,9 @@ public class parseRes {
         JSONArray objectsArray = jsonObject.getJSONArray("objects");
         List<ObjectRes> objects = new ArrayList<ObjectRes>();
         final int length = objectsArray.size();
+        // System.out.println(objectsArray);
         for (int i=0; i<length; ++i) {
+            // System.out.println(objectsArray.getJSONObject(i));
             objects.add(parseToObject(objectsArray.getJSONObject(i)));
         }
         return new FindTimesRes(status, message, id, start, end, objects);
@@ -147,7 +148,7 @@ public class parseRes {
      * @param res JSON信息
      * @return 消息类
      */
-    public static FindEventRes parseFindEventRes(String res) {
+    public static FindNodeEventRes parseFindNodeEventRes(String res) {
         JSONObject jsonObject = JSON.parseObject(res);
         // res.status
         String status = jsonObject.getString("status");
@@ -164,43 +165,7 @@ public class parseRes {
         for (int i=0; i<length; ++i) {
             objects.add(parseToObject(objectsArray.getJSONObject(i)));
         }
-        return new FindEventRes(status, message, nodeId, eventId, objects);
-    }
-
-    /**
-     * 注册用户返回信息解析
-     * @param res JSON信息
-     * @return 消息类
-     */
-    public static RegisterRes parseRegisterRes(String res) {
-        JSONObject jsonObject = JSON.parseObject(res);
-        // res.status
-        String status = jsonObject.getString("status");
-        // res.message
-        String message = jsonObject.getString("message");
-        // res.userId
-        String userId = jsonObject.getString("userId");
-        // res.name
-        String name = jsonObject.getString("name");
-        // res.intro
-        String intro = jsonObject.getString("intro");
-        return new RegisterRes(status, message, userId, name, intro);
-    }
-
-    /**
-     * 注销用户返回信息解析
-     * @param res JSON信息
-     * @return 消息类
-     */
-    public static UnregisterRes parseUnregisterRes(String res) {
-        JSONObject jsonObject = JSON.parseObject(res);
-        // res.status
-        String status = jsonObject.getString("status");
-        // res.message
-        String message = jsonObject.getString("message");
-        // res.userId
-        String userId = jsonObject.getString("userId");
-        return new UnregisterRes(status, message, userId);
+        return new FindNodeEventRes(status, message, nodeId, eventId, objects);
     }
 
     /**
@@ -268,12 +233,10 @@ public class parseRes {
 
     /**
      * 将JSON中的对象提取出来
-     * @param jsonObject 含合法object字段的json对象
+     * @param object json对象
      * @return 对象
      */
-    static ObjectRes parseToObject(JSONObject jsonObject) {
-        // res.object
-        JSONObject object = jsonObject.getJSONObject("object");
+    static ObjectRes parseToObject(JSONObject object) {
         // 有效性检测
         if (object == null) return null;
         String id = object.getString("id");

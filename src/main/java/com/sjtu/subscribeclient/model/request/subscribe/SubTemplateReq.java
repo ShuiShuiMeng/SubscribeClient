@@ -6,23 +6,14 @@ import java.util.List;
 
 public class SubTemplateReq extends BaseReq {
 
-    private List<String> name;
+    private String template;
     private List<String> events;
 
-    public SubTemplateReq(String userId, String id, List<String> name, List<String> events) {
-        this.op = "SUB";
+    public SubTemplateReq(String userId, String template, List<String> events) {
+        this.op = "SUB_TEMPLATE";
         this.userId = userId;
-        this.id = id;
-        this.name = name;
+        this.template = template;
         this.events = events;
-    }
-
-    public List<String> getName() {
-        return name;
-    }
-
-    public void setName(List<String> name) {
-        this.name = name;
     }
 
     public List<String> getEvents() {
@@ -31,5 +22,13 @@ public class SubTemplateReq extends BaseReq {
 
     public void setEvents(List<String> events) {
         this.events = events;
+    }
+
+    public String getTemplate() {
+        return template;
+    }
+
+    public void setTemplate(String template) {
+        this.template = template;
     }
 }

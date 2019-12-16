@@ -11,8 +11,8 @@ public class RabbitConsumer {
      * @return 消息字符串
      * @throws IOException 来自basicGet
      */
-     public static String getOneMsg(User user) throws IOException {
-         GetResponse getResponse = RabbitConnection.channel.basicGet(user.getName(), false);
+     public static String getOneMsg(String userName) throws IOException {
+         GetResponse getResponse = RabbitConnection.channel.basicGet(userName, false);
          String msg;
          if (getResponse != null) {
              msg = new String(getResponse.getBody(), "utf-8");
