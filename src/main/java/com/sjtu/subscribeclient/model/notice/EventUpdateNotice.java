@@ -2,14 +2,14 @@ package com.sjtu.subscribeclient.model.notice;
 
 import java.util.Date;
 
-public class ObjectUpdateNotice extends BaseNotice {
+public class EventUpdateNotice extends BaseNotice {
     private String id;
     private String name;
     private String value;
     private Date updateTime;
 
-    public ObjectUpdateNotice(String message, String id, String name, String value, Date updateTime, String subType) {
-        this.op = "OBJECT_UPDATE_NOTICE";
+    public EventUpdateNotice(String message, String id, String name, String value, Date updateTime, String subType) {
+        this.op = "EVENT_UPDATE_NOTICE";
         this.message = message;
         this.id = id;
         this.name = name;

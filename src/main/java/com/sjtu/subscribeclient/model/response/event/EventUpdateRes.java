@@ -1,16 +1,17 @@
-package com.sjtu.subscribeclient.model.response.cud;
+package com.sjtu.subscribeclient.model.response.event;
 
 import com.sjtu.subscribeclient.model.response.base.BaseRes;
 
-public class DeleteRes extends BaseRes {
-
+public class EventUpdateRes extends BaseRes {
     private String id;
+    private String name;
 
-    public DeleteRes(String status, String message, String id) {
-        this.op = "DELETE";
+    public EventUpdateRes(String status, String message, String id, String name) {
+        this.op = "UPDATE_EVENT";
         this.status = status;
         this.message = message;
         this.id = id;
+        this.name = name;
     }
 
     public String getMessage() {
@@ -21,13 +22,20 @@ public class DeleteRes extends BaseRes {
         this.message = message;
     }
 
-
     public String getId() {
         return id;
     }
 
     public void setId(String id) {
         this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     @Override

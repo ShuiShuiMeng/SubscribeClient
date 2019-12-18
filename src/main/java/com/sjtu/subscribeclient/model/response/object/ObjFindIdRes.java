@@ -1,15 +1,15 @@
-package com.sjtu.subscribeclient.model.response.find;
+package com.sjtu.subscribeclient.model.response.object;
 
 import com.sjtu.subscribeclient.model.object.ObjectRes;
 import com.sjtu.subscribeclient.model.response.base.BaseRes;
 
-public class FindIdRes extends BaseRes {
+public class ObjFindIdRes extends BaseRes {
 
     private ObjectRes object;
     private String id;
 
-    public FindIdRes(String status, String message, String id, ObjectRes object) {
-        this.op = "FIND_ID";
+    public ObjFindIdRes(String status, String message, String id, ObjectRes object) {
+        this.op = "OBJECT_FIND_ID";
         this.status = status;
         this.message = message;
         this.id = id;

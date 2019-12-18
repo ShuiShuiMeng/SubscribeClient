@@ -1,24 +1,18 @@
 package com.sjtu.subscribeclient;
 
-import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
-import com.sjtu.subscribeclient.model.request.cud.CreateReq;
-import com.sjtu.subscribeclient.model.request.cud.DeleteReq;
-import com.sjtu.subscribeclient.model.request.find.FindIdReq;
-import com.sjtu.subscribeclient.model.request.find.FindNodeEventReq;
-import com.sjtu.subscribeclient.model.request.register.RegisterReq;
-import com.sjtu.subscribeclient.model.request.register.UnregisterReq;
-import com.sjtu.subscribeclient.model.request.subscribe.SubAttributeReq;
-import com.sjtu.subscribeclient.model.request.subscribe.SubObjectReq;
-import com.sjtu.subscribeclient.model.request.subscribe.SubTemplateReq;
-import com.sjtu.subscribeclient.model.response.subscribe.SubObjectRes;
-import com.sjtu.subscribeclient.model.response.subscribe.SubTemplateRes;
+import com.sjtu.subscribeclient.model.request.event.EventCreateReq;
+import com.sjtu.subscribeclient.model.request.event.EventDeleteReq;
+import com.sjtu.subscribeclient.model.request.event.EventFindIdReq;
+import com.sjtu.subscribeclient.model.request.event.EventUpdateReq;
+import com.sjtu.subscribeclient.model.request.subscribe.*;
+import com.sjtu.subscribeclient.model.response.subscribe.UnSubObjectRes;
 import com.sjtu.subscribeclient.model.user.User;
-import com.sjtu.subscribeclient.model.request.find.FindTimesReq;
-import com.sjtu.subscribeclient.utils.parseRes;
 
 import java.io.IOException;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
 import java.util.concurrent.TimeoutException;
 
 public class SubscribeClient {
@@ -45,19 +39,19 @@ public class SubscribeClient {
         */
 
         // FIND_ID
-        // String msg = JSONObject.toJSONString(new FindIdReq(user.getId(), "1"));
+        // String msg = JSONObject.toJSONString(new ObjFindIdReq(user.getId(), "1"));
 
         // FIND_TIME
-        // String msg = JSONObject.toJSONString(new FindTimeReq(user.getId(), "2", new Date()));
+        // String msg = JSONObject.toJSONString(new ObjFindTimeReq(user.getId(), "2", new Date()));
 
         // FIND_TIMES
-        // String msg = JSON.toJSONString(new FindTimesReq(user.getId(), "1", new Date(2019-1900, Calendar.DECEMBER, 10), new Date()));
+        // String msg = JSON.toJSONString(new ObjFindTimesReq(user.getId(), "1", new Date(2019-1900, Calendar.DECEMBER, 10), new Date()));
 
         // FIND_NODE_EVENT
-        // String msg = JSON.toJSONString(new FindNodeEventReq(user.getId(), "1", "1"));
+        // String msg = JSON.toJSONString(new ObjFindNodeEventReq(user.getId(), "1", "1"));
 
         // Update
-        // String msg = JSONObject.toJSONString(new UpdateReq(user.getId(), true,"2", "male", "male"));
+        // String msg = JSONObject.toJSONString(new ObjUpdateReq(user.getId(), true,"2", "male", "male"));
 
         // CREATE
         // HashMap<String, String> map = new HashMap<String, String>();
@@ -65,27 +59,53 @@ public class SubscribeClient {
         // map.put("num", "2");
         // List<String> events = new ArrayList<String>();
         // events.add("1");
-        // String msg = JSONObject.toJSONString(new CreateReq(user.getId(), true,"1", "resource_1", "灭火器", "1", events, map));
+        // String msg = JSONObject.toJSONString(new ObjCreateReq(user.getId(), true,"1", "resource_1", "灭火器", "1", events, map));
 
         // DELETE
-        String msg = JSONObject.toJSONString(new DeleteReq(user.getId(), true, "1"));
+        // String msg = JSONObject.toJSONString(new ObjDeleteReq(user.getId(), true, "1"));
 
         // SUB_TEMPLATE
-        // List<String> events = new ArrayList<String>();
-        // events.add("1");
-        // String msg = JSONObject.toJSONString(new SubTemplateReq(user.getId(),"1", events));
-        // Rabbit.sendObjRequest(msg);
+        List<String> events = new ArrayList<String>();
+        events.add("1");
+        String msg = JSONObject.toJSONString(new SubTemplateReq(user.getId(),"1", null));
+        Rabbit.sendObjRequest(msg);
 
         // SUB_OBJECT
-        // String msg = JSONObject.toJSONString(new SubObjectReq(user.getId(), "1", true));
+        // String msg = JSONObject.toJSONString(new SubObjectReq(user.getId(), "2", true));
+        // Rabbit.sendSubRequest(msg);
 
         // SUB_ATTR
         // List<String> attrs = new ArrayList<String>();
         // attrs.add("pos");
-        // String msg = JSONObject.toJSONString(new SubAttributeReq(user.getId(), "1", attrs, true));
+        // String msg = JSONObject.toJSONString(new SubAttributeReq(user.getId(), "2", attrs, true));
 
-        Rabbit.sendObjRequest(msg);
-        //Rabbit.sendSubRequest(msg);
+        // UNSUB_ATTR
+        // List<String> attrs = new ArrayList<String>();
+        // attrs.add("pos");
+        // String msg = JSONObject.toJSONString(new UnSubAttributeReq(user.getId(), "2", attrs));
+
+        // UNSUB_TEMPLATE
+        // String msg = JSONObject.toJSONString(new UnSubTemplateReq(user.getId(), "3"));
+
+        // UNSUB_OBJECT
+        // String msg = JSONObject.toJSONString(new UnSubObjectReq(user.getId(), "2"));
+        // CREATE_EVENT
+        // HashMap<String, String> map = new HashMap<String, String>();
+        // map.put("pos", "111");
+        // map.put("time", "222");
+        // String msg = JSONObject.toJSONString(new EventCreateReq(user.getId(), true, "10", "123", "intro", "3", map));
+
+        // UPDATE_EVENT
+        // String msg = JSONObject.toJSONString(new EventUpdateReq(user.getId(), true,"10", "pos", "000"));
+
+        // EVENT_FIND_ID
+        // String msg = JSONObject.toJSONString(new EventFindIdReq(user.getId(),"10"));
+
+        // EVENT_DELETE
+        // String msg = JSONObject.toJSONString(new EventDeleteReq(user.getId(), true, "10"));
+        // Rabbit.sendObjRequest(msg);
+
+        Rabbit.sendSubRequest(msg);
         // String msg = "{\"xx\": \"123\" , \"id\": {}}";
         System.out.println(msg);
         // System.out.println(JSON.parseObject(msg).getJSONObject("id"));

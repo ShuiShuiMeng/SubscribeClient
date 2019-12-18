@@ -1,18 +1,14 @@
-package com.sjtu.subscribeclient.model.request.cud;
+package com.sjtu.subscribeclient.model.request.object;
 
 import com.sjtu.subscribeclient.model.request.base.BaseReq;
 
-public class UpdateReq extends BaseReq {
+public class ObjUpdateReq extends BaseReq {
     private boolean response;
     private String name;
     private String value;
 
-    public UpdateReq(String userId, String id, String name, String value) {
-        new UpdateReq(userId, true, id, name, value);
-    }
-
-    public UpdateReq(String userId, boolean response, String id, String name, String value) {
-        this.op = "UPDATE";
+    public ObjUpdateReq(String userId, boolean response, String id, String name, String value) {
+        this.op = "UPDATE_OBJECT";
         this.userId = userId;
         this.id = id;
         this.response = response;

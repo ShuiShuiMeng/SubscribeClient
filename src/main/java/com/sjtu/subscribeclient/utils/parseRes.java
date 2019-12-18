@@ -4,18 +4,22 @@ import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.sjtu.subscribeclient.model.object.AttributeRes;
+import com.sjtu.subscribeclient.model.object.EventRes;
 import com.sjtu.subscribeclient.model.object.ObjectRes;
-import com.sjtu.subscribeclient.model.response.cud.CreateRes;
-import com.sjtu.subscribeclient.model.response.cud.DeleteRes;
-import com.sjtu.subscribeclient.model.response.cud.UpdateRes;
-import com.sjtu.subscribeclient.model.response.find.FindNodeEventRes;
-import com.sjtu.subscribeclient.model.response.find.FindIdRes;
-import com.sjtu.subscribeclient.model.response.find.FindTimeRes;
-import com.sjtu.subscribeclient.model.response.find.FindTimesRes;
-import com.sjtu.subscribeclient.model.response.subscribe.SubAttributeRes;
-import com.sjtu.subscribeclient.model.response.subscribe.SubObjectRes;
-import com.sjtu.subscribeclient.model.response.subscribe.SubTemplateRes;
+import com.sjtu.subscribeclient.model.response.event.EventCreateRes;
+import com.sjtu.subscribeclient.model.response.event.EventDeleteRes;
+import com.sjtu.subscribeclient.model.response.event.EventFindIdRes;
+import com.sjtu.subscribeclient.model.response.event.EventUpdateRes;
+import com.sjtu.subscribeclient.model.response.object.ObjCreateRes;
+import com.sjtu.subscribeclient.model.response.object.ObjDeleteRes;
+import com.sjtu.subscribeclient.model.response.object.ObjUpdateRes;
+import com.sjtu.subscribeclient.model.response.object.ObjFindNodeEventRes;
+import com.sjtu.subscribeclient.model.response.object.ObjFindIdRes;
+import com.sjtu.subscribeclient.model.response.object.ObjFindTimeRes;
+import com.sjtu.subscribeclient.model.response.object.ObjFindTimesRes;
+import com.sjtu.subscribeclient.model.response.subscribe.*;
 
+import java.awt.*;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
@@ -27,7 +31,7 @@ public class parseRes {
      * @param res JSON信息
      * @return 消息类
      */
-    public static CreateRes parseCreateRes(String res) {
+    public static ObjCreateRes parseObjCreateRes(String res) {
         JSONObject jsonObject = JSON.parseObject(res);
         // res.status
         String status = jsonObject.getString("status");
@@ -35,7 +39,7 @@ public class parseRes {
         String message = jsonObject.getString("message");
         // res.id
         String id = jsonObject.getString("id");
-        return new CreateRes(status, message, id);
+        return new ObjCreateRes(status, message, id);
     }
 
     /**
@@ -43,7 +47,7 @@ public class parseRes {
      * @param res JSON信息
      * @return 消息类
      */
-    public static DeleteRes parseDeleteRes(String res) {
+    public static ObjDeleteRes parseObjDeleteRes(String res) {
         JSONObject jsonObject = JSON.parseObject(res);
         // res.status
         String status = jsonObject.getString("status");
@@ -51,7 +55,7 @@ public class parseRes {
         String message = jsonObject.getString("message");
         // res.id
         String id = jsonObject.getString("id");
-        return new DeleteRes(status, message, id);
+        return new ObjDeleteRes(status, message, id);
     }
 
     /**
@@ -59,7 +63,7 @@ public class parseRes {
      * @param res JSON信息
      * @return 消息类
      */
-    public static UpdateRes parseUpdateRes(String res) {
+    public static ObjUpdateRes parseObjUpdateRes(String res) {
         JSONObject jsonObject = JSON.parseObject(res);
         // res.status
         String status = jsonObject.getString("status");
@@ -69,7 +73,7 @@ public class parseRes {
         String id = jsonObject.getString("id");
         // res.name
         String name = jsonObject.getString("name");
-        return new UpdateRes(status, message, id, name);
+        return new ObjUpdateRes(status, message, id, name);
     }
 
     /**
@@ -78,7 +82,7 @@ public class parseRes {
      * @param res JSON信息
      * @return 消息类
      */
-    public static FindIdRes parseFindIdRes(String res) {
+    public static ObjFindIdRes parseObjFindIdRes(String res) {
         JSONObject jsonObject = JSON.parseObject(res);
         // res.status
         String status = jsonObject.getString("status");
@@ -88,7 +92,7 @@ public class parseRes {
         String id = jsonObject.getString("id");
         // res.object
         JSONObject object = jsonObject.getJSONObject("object");
-        return new FindIdRes(status, message, id, parseToObject(object));
+        return new ObjFindIdRes(status, message, id, parseToObject(object));
     }
 
     /**
@@ -97,7 +101,7 @@ public class parseRes {
      * @param res JSON信息
      * @return 消息类
      */
-    public static FindTimeRes parseFindTimeRes(String res) {
+    public static ObjFindTimeRes parseObjFindTimeRes(String res) {
         JSONObject jsonObject = JSON.parseObject(res);
         // res.status
         String status = jsonObject.getString("status");
@@ -109,7 +113,7 @@ public class parseRes {
         Date date = jsonObject.getDate("date");
         // res.object
         JSONObject object = jsonObject.getJSONObject("object");
-        return new FindTimeRes(status, message, id, date, parseToObject(object));
+        return new ObjFindTimeRes(status, message, id, date, parseToObject(object));
     }
 
     /**
@@ -118,7 +122,7 @@ public class parseRes {
      * @param res JSON信息
      * @return 消息类
      */
-    public static FindTimesRes parseFindTimesRes(String res) {
+    public static ObjFindTimesRes parseObjFindTimesRes(String res) {
         JSONObject jsonObject = JSON.parseObject(res);
         // res.status
         String status = jsonObject.getString("status");
@@ -139,7 +143,7 @@ public class parseRes {
             // System.out.println(objectsArray.getJSONObject(i));
             objects.add(parseToObject(objectsArray.getJSONObject(i)));
         }
-        return new FindTimesRes(status, message, id, start, end, objects);
+        return new ObjFindTimesRes(status, message, id, start, end, objects);
     }
 
     /**
@@ -148,7 +152,7 @@ public class parseRes {
      * @param res JSON信息
      * @return 消息类
      */
-    public static FindNodeEventRes parseFindNodeEventRes(String res) {
+    public static ObjFindNodeEventRes parseObjFindNodeEventRes(String res) {
         JSONObject jsonObject = JSON.parseObject(res);
         // res.status
         String status = jsonObject.getString("status");
@@ -165,7 +169,75 @@ public class parseRes {
         for (int i=0; i<length; ++i) {
             objects.add(parseToObject(objectsArray.getJSONObject(i)));
         }
-        return new FindNodeEventRes(status, message, nodeId, eventId, objects);
+        return new ObjFindNodeEventRes(status, message, nodeId, eventId, objects);
+    }
+
+    /**
+     * 创建事件返回信息解析
+     * @param res 响应JSON
+     * @return 消息类
+     */
+    public static EventCreateRes parseEventCreateRes(String res) {
+        JSONObject jsonObject = JSON.parseObject(res);
+        // res.status
+        String status = jsonObject.getString("status");
+        // res.message
+        String message = jsonObject.getString("message");
+        // res.id
+        String id = jsonObject.getString("id");
+        return new EventCreateRes(status, message, id);
+    }
+
+    /**
+     * 删除事件返回信息解析
+     * @param res JSON信息
+     * @return 消息类
+     */
+    public static EventDeleteRes parseEventDeleteRes(String res) {
+        JSONObject jsonObject = JSON.parseObject(res);
+        // res.status
+        String status = jsonObject.getString("status");
+        // res.message
+        String message = jsonObject.getString("message");
+        // res.id
+        String id = jsonObject.getString("id");
+        return new EventDeleteRes(status, message, id);
+    }
+
+    /**
+     * 更新事件返回信息解析
+     * @param res JSON信息
+     * @return 消息类
+     */
+    public static EventUpdateRes parseEventUpdateRes(String res) {
+        JSONObject jsonObject = JSON.parseObject(res);
+        // res.status
+        String status = jsonObject.getString("status");
+        // res.message
+        String message = jsonObject.getString("message");
+        // res.id
+        String id = jsonObject.getString("id");
+        // res.name
+        String name = jsonObject.getString("name");
+        return new EventUpdateRes(status, message, id, name);
+    }
+    /**
+     * 查询事件返回信息解析
+     * 查询条件：id
+     * @param res JSON信息
+     * @return 消息类
+     */
+    public static EventFindIdRes parseEventFindIdRes(String res) {
+        JSONObject jsonObject = JSON.parseObject(res);
+        // res.status
+        String status = jsonObject.getString("status");
+        // res.message
+        String message = jsonObject.getString("message");
+        // res.id
+        String id = jsonObject.getString("id");
+        // res.object
+        JSONObject event = jsonObject.getJSONObject("event");
+        return new EventFindIdRes(status, message, id, parseToEvent(event));
     }
 
     /**
@@ -232,6 +304,56 @@ public class parseRes {
     }
 
     /**
+     * 取消订阅对象
+     * @param res JSON信息
+     * @return 消息类
+     */
+    public static UnSubObjectRes parseUnSubObjectRes(String res) {
+        final JSONObject jsonObject = JSON.parseObject(res);
+        // res.status
+        String status = jsonObject.getString("status");
+        // res.message
+        String message = jsonObject.getString("message");
+        // res.id
+        String id = jsonObject.getString("id");
+        return new UnSubObjectRes(status, message, id);
+    }
+
+
+    /**
+     *
+     */
+    public static UnSubAttributeRes parseUnSubAttributeRes(String res) {
+        final JSONObject jsonObject = JSON.parseObject(res);
+        // res.status
+        String status = jsonObject.getString("status");
+        // res.message
+        String message = jsonObject.getString("message");
+        // res.id
+        String id = jsonObject.getString("id");
+        // res.names
+        JSONArray namesArray = jsonObject.getJSONArray("names");
+        List<String> names = JSONObject.parseArray(namesArray.toJSONString(), String.class);
+        return new UnSubAttributeRes(status, message, id, names);
+    }
+
+    /**
+     * 取消订阅模板
+     * @param res JSON信息
+     * @return 消息类
+     */
+    public static UnSubTemplateRes parseUnSubTemplateRes(String res) {
+        final JSONObject jsonObject = JSON.parseObject(res);
+        // res.status
+        String status = jsonObject.getString("status");
+        // res.message
+        String message = jsonObject.getString("message");
+        // res.template
+        String template = jsonObject.getString("template");
+        return new UnSubTemplateRes(status, message, template);
+    }
+
+    /**
      * 将JSON中的对象提取出来
      * @param object json对象
      * @return 对象
@@ -242,7 +364,6 @@ public class parseRes {
         String id = object.getString("id");
         String name = object.getString("name");
         String intro = object.getString("intro");
-        String type = object.getString("type");
         String template = object.getString("template");
 
         // res.object.events
@@ -266,6 +387,45 @@ public class parseRes {
         Date createTime = object.getDate("createTime");
         Date updateTime = object.getDate("updateTime");
 
-        return new ObjectRes(id, name, intro, type, template, eventsMap, attrsMap, createTime, updateTime);
+        return new ObjectRes(id, name, intro, template, eventsMap, attrsMap, createTime, updateTime);
+    }
+
+    /**
+     * 将JSON中的事件提取出来
+     * @param event json对象
+     * @return 事件
+     */
+    static EventRes parseToEvent(JSONObject event) {
+        // 有效性检测
+        if (event == null) return null;
+        String id = event.getString("id");
+        String name = event.getString("name");
+        String intro = event.getString("intro");
+        String template = event.getString("template");
+        String stage = event.getString("stage");
+        boolean status = event.getBoolean("status");
+
+        // res.event.objects
+        JSONArray objectsArray = event.getJSONArray("objects");
+        List<String> objects = JSONObject.parseArray(objectsArray.toJSONString(), String.class);
+
+        // res.event.attrs
+        HashMap<String, AttributeRes> attrsMap = new HashMap<String, AttributeRes>();
+        JSONObject attrs = event.getJSONObject("attrs");
+        for (String attr : attrs.keySet()) {
+            // res.object.attrs.xxx
+            JSONObject attrObject = attrs.getJSONObject(attr);
+            AttributeRes attributeRes = new AttributeRes(attrObject.getString("value"), attrObject.getDate("updateTime"));
+            attrsMap.put(attr, attributeRes);
+        }
+        // res.startTime & res.endTime
+        Date startTime = event.getDate("startTime");
+        Date endTime = event.getDate("endTime");
+
+        // res.createTime & res.updateTime
+        Date createTime = event.getDate("createTime");
+        Date updateTime = event.getDate("updateTime");
+
+        return new EventRes(id, name, intro, template, objects, attrsMap, startTime, endTime, status, stage, createTime, updateTime);
     }
 }

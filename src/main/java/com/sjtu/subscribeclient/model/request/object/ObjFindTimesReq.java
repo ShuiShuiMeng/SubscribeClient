@@ -1,15 +1,15 @@
-package com.sjtu.subscribeclient.model.request.find;
+package com.sjtu.subscribeclient.model.request.object;
 
 import com.sjtu.subscribeclient.model.request.base.BaseReq;
 
 import java.util.Date;
 
-public class FindTimesReq extends BaseReq {
+public class ObjFindTimesReq extends BaseReq {
     private Date start;
     private Date end;
 
-    public FindTimesReq(String userId, String id, Date start, Date end) {
-        this.op = "FIND_TIMES";
+    public ObjFindTimesReq(String userId, String id, Date start, Date end) {
+        this.op = "OBJECT_FIND_TIMES";
         this.userId = userId;
         this.id = id;
         this.start = start;

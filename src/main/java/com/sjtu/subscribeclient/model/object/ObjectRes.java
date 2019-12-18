@@ -8,7 +8,6 @@ public class ObjectRes {
     private String id;              // 对象id
     private String name;            // 英文
     private String intro;           // 描述
-    private String type;            // 类型
     private String template;        // 模板id
 
     private HashMap<String, Date> events; // 关联的events
@@ -18,11 +17,10 @@ public class ObjectRes {
     private Date createTime;
     private Date updateTime;
 
-    public ObjectRes(String id, String name, String intro, String type, String template, HashMap<String, Date> events, HashMap<String, AttributeRes> attrs, Date createTime, Date updateTime) {
+    public ObjectRes(String id, String name, String intro, String template, HashMap<String, Date> events, HashMap<String, AttributeRes> attrs, Date createTime, Date updateTime) {
         this.id = id;
         this.name = name;
         this.intro = intro;
-        this.type = type;
         this.template = template;
         this.attrs = attrs;
         this.events = events;
@@ -52,14 +50,6 @@ public class ObjectRes {
 
     public void setIntro(String intro) {
         this.intro = intro;
-    }
-
-    public String getType() {
-        return type;
-    }
-
-    public void setType(String type) {
-        this.type = type;
     }
 
     public String getTemplate() {
@@ -124,7 +114,6 @@ public class ObjectRes {
         return ("{\"id\":" + id +
                 ",\"name\":" + name +
                 ",\"intro\":" + intro +
-                ",\"type\":" + type +
                 ",\"template\":" + template +
                 ",\"events\":" + eventsStr +
                 ",\"attrs\":" + attrsStr +

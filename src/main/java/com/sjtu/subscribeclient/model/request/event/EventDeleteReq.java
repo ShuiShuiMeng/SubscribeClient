@@ -1,17 +1,12 @@
-package com.sjtu.subscribeclient.model.request.cud;
+package com.sjtu.subscribeclient.model.request.event;
 
 import com.sjtu.subscribeclient.model.request.base.BaseReq;
 
-public class DeleteReq extends BaseReq {
+public class EventDeleteReq extends BaseReq {
     private boolean response;
 
-    // response 默认打开
-    public DeleteReq(String userId, String id) {
-        new DeleteReq(userId, true, id);
-    }
-
-    public DeleteReq(String userId, boolean response, String id) {
-        this.op = "DELETE";
+    public EventDeleteReq(String userId, boolean response, String id) {
+        this.op = "DELETE_EVENT";
         this.userId = userId;
         this.id = id;
         this.response = response;

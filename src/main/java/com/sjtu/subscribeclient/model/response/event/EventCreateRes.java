@@ -1,26 +1,16 @@
-package com.sjtu.subscribeclient.model.response.cud;
+package com.sjtu.subscribeclient.model.response.event;
 
 import com.sjtu.subscribeclient.model.response.base.BaseRes;
 
-public class CreateRes extends BaseRes {
-
+public class EventCreateRes extends BaseRes {
     private String id;
 
-    public CreateRes(String status, String message, String id) {
-        this.op = "CREATE";
+    public EventCreateRes(String status, String message, String id) {
+        this.op = "CREATE_EVENT";
         this.status = status;
         this.message = message;
         this.id = id;
     }
-
-    public String getMessage() {
-        return message;
-    }
-
-    public void setMessage(String message) {
-        this.message = message;
-    }
-
 
     public String getId() {
         return id;

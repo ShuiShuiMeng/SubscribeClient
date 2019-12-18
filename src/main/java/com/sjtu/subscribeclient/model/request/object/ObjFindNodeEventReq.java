@@ -1,13 +1,13 @@
-package com.sjtu.subscribeclient.model.request.find;
+package com.sjtu.subscribeclient.model.request.object;
 
 import com.sjtu.subscribeclient.model.request.base.BaseReq;
 
-public class FindNodeEventReq extends BaseReq {
+public class ObjFindNodeEventReq extends BaseReq {
     private String nodeId;
     private String eventId;
 
-    public FindNodeEventReq(String userId, String nodeId, String eventId) {
-        this.op = "FIND_NODE_EVENT";
+    public ObjFindNodeEventReq(String userId, String nodeId, String eventId) {
+        this.op = "OBJECT_FIND_NODE_EVENT";
         this.userId = userId;
         this.nodeId = nodeId;
         this.eventId = eventId;

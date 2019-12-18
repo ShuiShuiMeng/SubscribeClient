@@ -1,13 +1,13 @@
-package com.sjtu.subscribeclient.model.response.cud;
+package com.sjtu.subscribeclient.model.response.object;
 
 import com.sjtu.subscribeclient.model.response.base.BaseRes;
 
-public class UpdateRes extends BaseRes {
+public class ObjUpdateRes extends BaseRes {
     private String id;
     private String name;
 
-    public UpdateRes(String status, String message, String id, String name) {
-        this.op = "UPDATE";
+    public ObjUpdateRes(String status, String message, String id, String name) {
+        this.op = "UPDATE_OBJECT";
         this.status = status;
         this.message = message;
         this.id = id;

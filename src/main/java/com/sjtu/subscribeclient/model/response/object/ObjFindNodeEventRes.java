@@ -1,18 +1,18 @@
-package com.sjtu.subscribeclient.model.response.find;
+package com.sjtu.subscribeclient.model.response.object;
 
 import com.sjtu.subscribeclient.model.object.ObjectRes;
 import com.sjtu.subscribeclient.model.response.base.BaseRes;
 
 import java.util.List;
 
-public class FindNodeEventRes extends BaseRes {
+public class ObjFindNodeEventRes extends BaseRes {
 
     private String nodeId;
     private String eventId;
     private List<ObjectRes> objects;
 
-    public FindNodeEventRes(String status, String message, String nodeId, String eventId, List<ObjectRes> objects) {
-        this.op = "FIND_NODE_EVENT";
+    public ObjFindNodeEventRes(String status, String message, String nodeId, String eventId, List<ObjectRes> objects) {
+        this.op = "OBJECT_FIND_NODE_EVENT";
         this.status = status;
         this.message = message;
         this.nodeId = nodeId;

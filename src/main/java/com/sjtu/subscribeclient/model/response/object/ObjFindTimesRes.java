@@ -1,4 +1,4 @@
-package com.sjtu.subscribeclient.model.response.find;
+package com.sjtu.subscribeclient.model.response.object;
 
 import com.sjtu.subscribeclient.model.object.ObjectRes;
 import com.sjtu.subscribeclient.model.response.base.BaseRes;
@@ -6,15 +6,15 @@ import com.sjtu.subscribeclient.model.response.base.BaseRes;
 import java.util.Date;
 import java.util.List;
 
-public class FindTimesRes extends BaseRes {
+public class ObjFindTimesRes extends BaseRes {
 
     private String id;
     private Date start;
     private Date end;
     private List<ObjectRes> objects;
 
-    public FindTimesRes(String status, String message, String id, Date start, Date end, List<ObjectRes> objects) {
-        this.op = "FIND_TIMES";
+    public ObjFindTimesRes(String status, String message, String id, Date start, Date end, List<ObjectRes> objects) {
+        this.op = "OBJECT_FIND_TIMES";
         this.status = status;
         this.message = message;
         this.id = id;

@@ -1,11 +1,11 @@
-package com.sjtu.subscribeclient.model.request.cud;
+package com.sjtu.subscribeclient.model.request.object;
 
 import com.sjtu.subscribeclient.model.request.base.BaseReq;
 
 import java.util.HashMap;
 import java.util.List;
 
-public class CreateReq extends BaseReq {
+public class ObjCreateReq extends BaseReq {
     private boolean response;
     private String name;
     private String intro;
@@ -13,13 +13,8 @@ public class CreateReq extends BaseReq {
     private List<String> events;
     private HashMap<String, String> attrs;
 
-    // response 默认打开
-    public CreateReq(String userId, String id, String name, String intro, String template, List<String> events, HashMap<String, String> attrs) {
-        new CreateReq(userId, true, id, name, intro, template, events, attrs);
-    }
-
-    public CreateReq(String userId, boolean response, String id, String name, String intro, String template, List<String> events, HashMap<String, String> attrs) {
-        this.op = "CREATE";
+    public ObjCreateReq(String userId, boolean response, String id, String name, String intro, String template, List<String> events, HashMap<String, String> attrs) {
+        this.op = "CREATE_OBJECT";
         this.userId = userId;
         this.response = response;
         this.id = id;

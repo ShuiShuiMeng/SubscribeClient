@@ -1,18 +1,18 @@
-package com.sjtu.subscribeclient.model.response.find;
+package com.sjtu.subscribeclient.model.response.object;
 
 import com.sjtu.subscribeclient.model.object.ObjectRes;
 import com.sjtu.subscribeclient.model.response.base.BaseRes;
 
 import java.util.Date;
 
-public class FindTimeRes extends BaseRes {
+public class ObjFindTimeRes extends BaseRes {
 
     private ObjectRes object;
     private String id;
     private Date date;
 
-    public FindTimeRes(String status, String message, String id, Date date, ObjectRes object) {
-        this.op = "FIND_TIME";
+    public ObjFindTimeRes(String status, String message, String id, Date date, ObjectRes object) {
+        this.op = "OBJECT_FIND_TIME";
         this.status = status;
         this.message = message;
         this.id = id;
