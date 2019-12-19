@@ -5,6 +5,7 @@ import com.sjtu.subscribeclient.model.request.event.EventCreateReq;
 import com.sjtu.subscribeclient.model.request.event.EventDeleteReq;
 import com.sjtu.subscribeclient.model.request.event.EventFindIdReq;
 import com.sjtu.subscribeclient.model.request.event.EventUpdateReq;
+import com.sjtu.subscribeclient.model.request.object.ObjFindIdReq;
 import com.sjtu.subscribeclient.model.request.subscribe.*;
 import com.sjtu.subscribeclient.model.response.subscribe.UnSubObjectRes;
 import com.sjtu.subscribeclient.model.user.User;
@@ -39,7 +40,7 @@ public class SubscribeClient {
         */
 
         // FIND_ID
-        // String msg = JSONObject.toJSONString(new ObjFindIdReq(user.getId(), "1"));
+        String msg = JSONObject.toJSONString(new ObjFindIdReq(user.getId(), null));
 
         // FIND_TIME
         // String msg = JSONObject.toJSONString(new ObjFindTimeReq(user.getId(), "2", new Date()));
@@ -65,10 +66,10 @@ public class SubscribeClient {
         // String msg = JSONObject.toJSONString(new ObjDeleteReq(user.getId(), true, "1"));
 
         // SUB_TEMPLATE
-        List<String> events = new ArrayList<String>();
-        events.add("1");
-        String msg = JSONObject.toJSONString(new SubTemplateReq(user.getId(),"1", null));
-        Rabbit.sendObjRequest(msg);
+        // List<String> events = new ArrayList<String>();
+        // events.add("1");
+        // String msg = JSONObject.toJSONString(new SubTemplateReq(user.getId(),"1", null));
+        // Rabbit.sendObjRequest(msg);
 
         // SUB_OBJECT
         // String msg = JSONObject.toJSONString(new SubObjectReq(user.getId(), "2", true));
@@ -103,9 +104,10 @@ public class SubscribeClient {
 
         // EVENT_DELETE
         // String msg = JSONObject.toJSONString(new EventDeleteReq(user.getId(), true, "10"));
-        // Rabbit.sendObjRequest(msg);
 
-        Rabbit.sendSubRequest(msg);
+        Rabbit.sendObjRequest(msg);
+
+        // Rabbit.sendSubRequest(msg);
         // String msg = "{\"xx\": \"123\" , \"id\": {}}";
         System.out.println(msg);
         // System.out.println(JSON.parseObject(msg).getJSONObject("id"));
